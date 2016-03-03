@@ -1,0 +1,1914 @@
+---
+RolPermiso:
+  columns:
+    idRolPermiso:
+      type: integer
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    Permiso:
+      type: tinyint
+      unsigned: true
+      notnull: true
+      position: 2
+    Permiso_idPermiso:
+      type: integer
+      notnull: true
+      position: 3
+    Rol_idRol:
+      type: integer
+      notnull: true
+      position: 4
+  relations:
+    PermisoIdPermiso:
+      class: Permiso
+      local: Permiso_idPermiso
+      foreign: idPermiso
+      foreignAlias: RolPermiso
+    RolIdRol:
+      class: Rol
+      local: Rol_idRol
+      foreign: idRol
+      foreignAlias: RolPermiso
+  indexes:
+    fk_RolPermiso_Permiso1_idx:
+      fields: [Permiso_idPermiso]
+    fk_RolPermiso_Rol1_idx:
+      fields: [Rol_idRol]
+
+Permiso:
+  columns:
+    idPermiso:
+      type: integer
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    Formulario:
+      type: string(100)
+      notnull: true
+      position: 2
+    Etiqueta:
+      type: string(50)
+      notnull: true
+      position: 3
+    GrupoPermiso_idGrupoPermiso:
+      type: integer
+      notnull: true
+      position: 4
+  relations:
+    GrupoPermisoIdGrupoPermiso:
+      class: GrupoPermiso
+      local: GrupoPermiso_idGrupoPermiso
+      foreign: idGrupoPermiso
+      foreignAlias: Permiso
+  indexes:
+    fk_Permiso_GrupoPermiso1_idx:
+      fields: [GrupoPermiso_idGrupoPermiso]
+
+GrupoPermiso:
+  columns:
+    idGrupoPermiso:
+      type: integer
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    Nombre:
+      type: string(50)
+      notnull: true
+      position: 2
+
+Maquina:
+  columns:
+    idMaquina:
+      type: integer
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    Ip:
+      type: string(15)
+      unique: true
+      default: null
+      position: 2
+    Lugar_idLugar:
+      type: tinyint
+      unsigned: true
+      notnull: true
+      position: 3
+  relations:
+    LugarIdLugar:
+      class: Lugar
+      local: Lugar_idLugar
+      foreign: idLugar
+      foreignAlias: Maquina
+  indexes:
+    fk_Maquina_Lugar1_idx:
+      fields: [Lugar_idLugar]
+
+Usuario:
+  columns:
+    idUsuario:
+      type: integer
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    Empresa_idEmpresa:
+      type: integer
+      notnull: true
+      position: 2
+    Rol_idRol:
+      type: integer
+      notnull: true
+      position: 3
+    UsuarioCargo_idUsuarioCargo:
+      type: tinyint
+      unsigned: true
+      notnull: true
+      position: 4
+    Nombres:
+      type: string(100)
+      notnull: true
+      position: 5
+    Apellidos:
+      type: string(100)
+      notnull: true
+      position: 6
+    Usuario:
+      type: string(35)
+      unique: true
+      notnull: true
+      position: 7
+    FechaHora:
+      type: datetime
+      notnull: true
+      position: 8
+    Turno:
+      type: string(45)
+      position: 9
+  relations:
+    UsuarioCargoIdUsuarioCargo:
+      class: UsuarioCargo
+      local: UsuarioCargo_idUsuarioCargo
+      foreign: idUsuarioCargo
+      foreignAlias: Usuario
+    RolIdRol:
+      class: Rol
+      local: Rol_idRol
+      foreign: idRol
+      foreignAlias: Usuario
+    EmpresaIdEmpresa:
+      class: Empresa
+      local: Empresa_idEmpresa
+      foreign: idEmpresa
+      foreignAlias: Usuario
+  indexes:
+    Usuarios_FKIndex1:
+      fields: [UsuarioCargo_idUsuarioCargo]
+    Usuarios_FKIndex2:
+      fields: [Rol_idRol]
+    Usuario_FKIndex3:
+      fields: [Empresa_idEmpresa]
+
+Rol:
+  columns:
+    idRol:
+      type: integer
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    Rol:
+      type: string(50)
+      notnull: true
+      position: 2
+
+UsuarioCargo:
+  columns:
+    idUsuarioCargo:
+      type: tinyint
+      primary: true
+      unsigned: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    Cargo:
+      type: string(15)
+      notnull: true
+      position: 2
+
+Lugar:
+  columns:
+    idLugar:
+      type: tinyint
+      primary: true
+      unsigned: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    Empresa_idEmpresa:
+      type: integer
+      notnull: true
+      position: 2
+    LugarTipo_idLugarTipo:
+      type: tinyint
+      unsigned: true
+      notnull: true
+      position: 3
+    Nombre:
+      type: string(60)
+      default: null
+      position: 4
+    Direccion:
+      type: string(255)
+      default: null
+      position: 5
+    Telefono:
+      type: string(9)
+      default: null
+      position: 6
+    NumPlaca:
+      type: string(8)
+      default: null
+      position: 7
+  relations:
+    LugarTipoIdLugarTipo:
+      class: LugarTipo
+      local: LugarTipo_idLugarTipo
+      foreign: idLugarTipo
+      foreignAlias: Lugar
+    EmpresaIdEmpresa:
+      class: Empresa
+      local: Empresa_idEmpresa
+      foreign: idEmpresa
+      foreignAlias: Lugar
+  indexes:
+    Lugares_FKIndex1:
+      fields: [LugarTipo_idLugarTipo]
+    Lugar_FKIndex2:
+      fields: [Empresa_idEmpresa]
+
+Empresa:
+  columns:
+    idEmpresa:
+      type: integer
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    Nombre:
+      type: string(45)
+      default: null
+      position: 2
+
+LugarTipo:
+  columns:
+    idLugarTipo:
+      type: tinyint
+      primary: true
+      unsigned: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    Tipo:
+      type: string(25)
+      notnull: true
+      position: 2
+
+Doctor:
+  columns:
+    id:
+      type: integer
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    nombre:
+      type: string(255)
+      notnull: true
+      position: 2
+    direccion:
+      type: string(255)
+      position: 3
+    nit:
+      type: string(13)
+      unique: true
+      position: 4
+    observaciones:
+      type: text
+      position: 5
+    usuario:
+      type: string(35)
+      position: 6
+    accionista:
+      type: boolean
+      default: 0
+      position: 7
+    habilitado:
+      type: boolean
+      position: 8
+    Especialidad_id:
+      type: integer
+      notnull: true
+      position: 9
+  relations:
+    Especialidad:
+      class: Especialidad
+      local: Especialidad_id
+      foreign: id
+      foreignAlias: Doctor
+  indexes:
+    fk_Doctor_Especialidad1_idx:
+      fields: [Especialidad_id]
+
+Especialidad:
+  columns:
+    id:
+      type: integer
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    especialidad:
+      type: string(45)
+      position: 2
+    habilitado:
+      type: boolean
+      position: 3
+
+TipoTel:
+  columns:
+    id:
+      type: integer
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    tipo:
+      type: string(45)
+      position: 2
+
+Telefono:
+  columns:
+    id:
+      type: bigint
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    numero:
+      type: string(13)
+      notnull: true
+      position: 2
+    TipoTel_id:
+      type: integer
+      notnull: true
+      position: 3
+    Doctor_id:
+      type: integer
+      position: 4
+    Contacto_id:
+      type: integer
+      position: 5
+    Paciente_id:
+      type: bigint
+      position: 6
+    Proveedor_id:
+      type: integer
+      position: 7
+  relations:
+    Doctor:
+      class: Doctor
+      local: Doctor_id
+      foreign: id
+      foreignAlias: Telefono
+    TipoTel:
+      class: TipoTel
+      local: TipoTel_id
+      foreign: id
+      foreignAlias: Telefono
+    Contacto:
+      class: Contacto
+      local: Contacto_id
+      foreign: id
+      foreignAlias: Telefono
+    Paciente:
+      class: Paciente
+      local: Paciente_id
+      foreign: id
+      foreignAlias: Telefono
+    Proveedor:
+      class: Proveedor
+      local: Proveedor_id
+      foreign: id
+      foreignAlias: Telefono
+  indexes:
+    fk_Doctor_has_TipoTel_TipoTel1_idx:
+      fields: [TipoTel_id]
+    fk_Doctor_has_TipoTel_Doctor1_idx:
+      fields: [Doctor_id]
+    fk_Telefono_Contacto1_idx:
+      fields: [Contacto_id]
+    fk_Telefono_Paciente1_idx:
+      fields: [Paciente_id]
+    fk_Telefono_Proveedor1_idx:
+      fields: [Proveedor_id]
+
+Contacto:
+  columns:
+    id:
+      type: integer
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    nombre:
+      type: string(255)
+      notnull: true
+      position: 2
+    direccion:
+      type: string(255)
+      position: 3
+    observaciones:
+      type: text
+      position: 4
+    habilitado:
+      type: boolean
+      position: 5
+
+Paciente:
+  columns:
+    id:
+      type: bigint
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    noexpediente:
+      type: bigint
+      unique: true
+      position: 2
+    nombre:
+      type: string(255)
+      notnull: true
+      position: 3
+    apellido:
+      type: string(255)
+      position: 4
+    nombrepadre:
+      type: string(100)
+      position: 5
+    nombremadre:
+      type: string(100)
+      position: 6
+    sexo:
+      type: tinyint
+      notnull: true
+      position: 7
+    direccion:
+      type: string(255)
+      notnull: true
+      position: 8
+    email:
+      type: string(45)
+      position: 9
+    fnacimiento:
+      type: datetime
+      position: 10
+    lugarnacimiento:
+      type: string(255)
+      position: 11
+    lugarprocedencia:
+      type: string(255)
+      position: 12
+    dpi:
+      type: string(14)
+      unique: true
+      position: 13
+    ocupacion:
+      type: string(45)
+      position: 14
+    nombrepatrono:
+      type: string(100)
+      position: 15
+    nombreconyuge:
+      type: string(45)
+      position: 16
+    direccionconyuge:
+      type: string(45)
+      position: 17
+    contactoemergencia:
+      type: string(100)
+      position: 18
+    parentesco:
+      type: string(45)
+      position: 19
+    direccionemergencia:
+      type: string(45)
+      position: 20
+    responsablecuenta:
+      type: string(100)
+      position: 21
+    direccionresponsable:
+      type: string(45)
+      position: 22
+    nombretrabajo:
+      type: string(100)
+      position: 23
+    direcciontrabajo:
+      type: string(45)
+      position: 24
+    observaciones:
+      type: text
+      position: 25
+    nit:
+      type: string(13)
+      unique: true
+      position: 26
+    nacionalidad:
+      type: string(45)
+      position: 27
+    activo:
+      type: boolean
+      position: 28
+    poliza:
+      type: string(10)
+      position: 29
+    certificado:
+      type: string(10)
+      position: 30
+    Municipio_id_b_:
+      type: integer
+      position: 31
+    Estadocivil_id:
+      type: bigint
+      notnull: true
+      position: 32
+    Aseguradora_id:
+      type: integer
+      position: 33
+    Municipio_id_a_:
+      type: integer
+      position: 34
+    Escolaridad_id:
+      type: integer
+      notnull: true
+      position: 35
+    asegurado:
+      type: boolean
+      position: 36
+  relations:
+    MunicipioIdA_:
+      class: Municipio
+      local: Municipio_id_a_
+      foreign: id
+      foreignAlias: Paciente
+    Estadocivil:
+      class: Estadocivil
+      local: Estadocivil_id
+      foreign: id
+      foreignAlias: Paciente
+    MunicipioIdB_:
+      class: Municipio
+      local: Municipio_id_b_
+      foreign: id
+      foreignAlias: Paciente
+    Aseguradora:
+      class: Aseguradora
+      local: Aseguradora_id
+      foreign: id
+      foreignAlias: Paciente
+    Escolaridad:
+      class: Escolaridad
+      local: Escolaridad_id
+      foreign: id
+      foreignAlias: Paciente
+  indexes:
+    fk_Paciente_Municipio1_idx:
+      fields: [Municipio_id_a_]
+    fk_Paciente_Estadocivil1_idx:
+      fields: [Estadocivil_id]
+    fk_Paciente_Municipio2_idx:
+      fields: [Municipio_id_b_]
+    fk_Paciente_Aseguradora1_idx:
+      fields: [Aseguradora_id]
+    fk_Paciente_Escolaridad1_idx:
+      fields: [Escolaridad_id]
+
+Municipio:
+  columns:
+    id:
+      type: integer
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    municipio:
+      type: string(45)
+      position: 2
+    Departamento_id:
+      type: integer
+      notnull: true
+      position: 3
+  relations:
+    Departamento:
+      class: Departamento
+      local: Departamento_id
+      foreign: id
+      foreignAlias: Municipio
+  indexes:
+    fk_Municipio_Departamento1_idx:
+      fields: [Departamento_id]
+
+Departamento:
+  columns:
+    id:
+      type: integer
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    departamento:
+      type: string(45)
+      position: 2
+
+Controlingresos:
+  columns:
+    id:
+      type: bigint
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    edad:
+      type: tinyint
+      position: 2
+    otrosingresos:
+      type: tinyint
+      notnull: true
+      position: 3
+    fechaingreso:
+      type: datetime
+      notnull: true
+      position: 4
+    fechaegreso:
+      type: datetime
+      position: 5
+    diasestancia:
+      type: tinyint
+      position: 6
+    causamuerte:
+      type: text
+      position: 7
+    menor:
+      type: boolean
+      position: 8
+    autopsia:
+      type: boolean
+      position: 9
+    diagnosticofinal:
+      type: text
+      position: 10
+    complicaciones:
+      type: text
+      position: 11
+    operaciones:
+      type: text
+      position: 12
+    habitacion:
+      type: string(7)
+      position: 13
+    observaciones:
+      type: text
+      position: 14
+    nofactura:
+      type: string(15)
+      position: 15
+    Servicio_id:
+      type: tinyint
+      notnull: true
+      position: 16
+    Paciente_id:
+      type: bigint
+      notnull: true
+      position: 17
+    Doctor_id:
+      type: integer
+      position: 18
+    Tipoegreso_id:
+      type: tinyint
+      position: 19
+    Habitaciones_id:
+      type: integer
+      position: 20
+    es_emergencia:
+      type: boolean
+      position: 21
+  relations:
+    Tipoegreso:
+      class: Tipoegreso
+      local: Tipoegreso_id
+      foreign: id
+      foreignAlias: Controlingresos
+    Servicio:
+      class: Servicio
+      local: Servicio_id
+      foreign: id
+      foreignAlias: Controlingresos
+    Paciente:
+      class: Paciente
+      local: Paciente_id
+      foreign: id
+      foreignAlias: Controlingresos
+    Doctor:
+      class: Doctor
+      local: Doctor_id
+      foreign: id
+      foreignAlias: Controlingresos
+    Habitaciones:
+      class: Habitaciones
+      local: Habitaciones_id
+      foreign: id
+      foreignAlias: Controlingresos
+  indexes:
+    fk_Controlingresos_Tipoegreso1_idx:
+      fields: [Tipoegreso_id]
+    fk_Controlingresos_Servicio1_idx:
+      fields: [Servicio_id]
+    fk_Controlingresos_Paciente1_idx:
+      fields: [Paciente_id]
+    fk_Controlingresos_Doctor1_idx:
+      fields: [Doctor_id]
+    fk_Controlingresos_Habitaciones1_idx:
+      fields: [Habitaciones_id]
+
+Estadocivil:
+  columns:
+    id:
+      type: bigint
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    estadocivil:
+      type: string(45)
+      position: 2
+
+Tipoegreso:
+  columns:
+    id:
+      type: tinyint
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    tipoegreso:
+      type: string(45)
+      position: 2
+    habilitado:
+      type: boolean
+      position: 3
+
+Servicio:
+  columns:
+    id:
+      type: tinyint
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    servicio:
+      type: string(45)
+      position: 2
+    habilitado:
+      type: boolean
+      position: 3
+
+RolesMedicos:
+  columns:
+    id:
+      type: bigint
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    mes:
+      type: tinyint
+      position: 2
+    anio:
+      type: string(5)
+      position: 3
+    dia:
+      type: tinyint
+      position: 4
+    Doctor_id:
+      type: integer
+      notnull: true
+      position: 5
+    Especialidad_id:
+      type: integer
+      notnull: true
+      position: 6
+    observaciones:
+      type: text
+      position: 7
+    usuario:
+      type: string(35)
+      position: 8
+  relations:
+    Doctor:
+      class: Doctor
+      local: Doctor_id
+      foreign: id
+      foreignAlias: RolesMedicos
+    Especialidad:
+      class: Especialidad
+      local: Especialidad_id
+      foreign: id
+      foreignAlias: RolesMedicos
+  indexes:
+    fk_RolesMedicos_Doctor1_idx:
+      fields: [Doctor_id]
+    fk_RolesMedicos_Especialidad1_idx:
+      fields: [Especialidad_id]
+
+Ticketparqueo:
+  columns:
+    id:
+      type: bigint
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    fechahora:
+      type: datetime
+      position: 2
+    responsable:
+      type: string(100)
+      position: 3
+    placa:
+      type: string(8)
+      position: 4
+    marca:
+      type: string(45)
+      position: 5
+    color:
+      type: string(20)
+      position: 6
+    Paciente_id:
+      type: bigint
+      notnull: true
+      position: 7
+    habitacion:
+      type: integer
+      position: 8
+  relations:
+    Paciente:
+      class: Paciente
+      local: Paciente_id
+      foreign: id
+      foreignAlias: Ticketparqueo
+  indexes:
+    fk_Ticketparqueo_Paciente1_idx:
+      fields: [Paciente_id]
+
+Categoria:
+  columns:
+    id:
+      type: bigint
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    categoria:
+      type: string(45)
+      position: 2
+    habilitado:
+      type: boolean
+      position: 3
+    es_medicamento:
+      type: boolean
+      position: 4
+
+Medida:
+  columns:
+    id:
+      type: integer
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    medida:
+      type: string(45)
+      position: 2
+    es_medicamento:
+      type: boolean
+      position: 3
+
+derivado:
+  columns:
+    id:
+      type: integer
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    derivado:
+      type: string(45)
+      position: 2
+    Medida_id:
+      type: integer
+      notnull: true
+      position: 3
+    factorconversion:
+      type: float
+      position: 4
+  relations:
+    Medida:
+      class: Medida
+      local: Medida_id
+      foreign: id
+      foreignAlias: derivado
+  indexes:
+    fk_derivado_Medida1_idx:
+      fields: [Medida_id]
+
+Medicamento:
+  columns:
+    id:
+      type: bigint
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    codigo:
+      type: string(10)
+      position: 2
+    nombre:
+      type: string(100)
+      position: 3
+    nombregenerico:
+      type: string(100)
+      position: 4
+    descripcion:
+      type: string(100)
+      position: 5
+    precio:
+      type: float
+      position: 6
+    habilitado:
+      type: boolean
+      position: 7
+    maximo:
+      type: integer
+      position: 8
+    minimo:
+      type: integer
+      position: 9
+    composicion:
+      type: string(255)
+      position: 10
+    presentacion:
+      type: string(255)
+      position: 11
+    es_medicamento:
+      type: boolean
+      position: 12
+    Proveedor_id:
+      type: integer
+      position: 13
+    Medida_id:
+      type: integer
+      notnull: true
+      position: 14
+    Categoria_id:
+      type: bigint
+      position: 15
+    Laboratorio_id:
+      type: integer
+      position: 16
+  relations:
+    Proveedor:
+      class: Proveedor
+      local: Proveedor_id
+      foreign: id
+      foreignAlias: Medicamento
+    Categoria:
+      class: Categoria
+      local: Categoria_id
+      foreign: id
+      foreignAlias: Medicamento
+    Medida:
+      class: Medida
+      local: Medida_id
+      foreign: id
+      foreignAlias: Medicamento
+    Laboratorio:
+      class: Laboratorio
+      local: Laboratorio_id
+      foreign: id
+      foreignAlias: Medicamento
+  indexes:
+    fk_Medicamento_Proveedor1_idx:
+      fields: [Proveedor_id]
+    fk_Medicamento_Categoria1_idx:
+      fields: [Categoria_id]
+    fk_Medicamento_Medida1_idx:
+      fields: [Medida_id]
+    fk_Medicamento_Laboratorio1_idx:
+      fields: [Laboratorio_id]
+
+Proveedor:
+  columns:
+    id:
+      type: integer
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    nombre:
+      type: string(255)
+      position: 2
+    contacto:
+      type: string(100)
+      position: 3
+    direccion:
+      type: string(255)
+      position: 4
+    nit:
+      type: string(15)
+      unique: true
+      position: 5
+    observaciones:
+      type: text
+      position: 6
+    habilitado:
+      type: boolean
+      position: 7
+    es_medicamento:
+      type: boolean
+      position: 8
+
+MedicamentoLugar:
+  columns:
+    id:
+      type: bigint
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    existencia:
+      type: float
+      position: 2
+    habilitado:
+      type: boolean
+      position: 3
+    Servicio_id:
+      type: tinyint
+      notnull: true
+      position: 4
+    Medicamento_id:
+      type: bigint
+      notnull: true
+      position: 5
+  relations:
+    Servicio:
+      class: Servicio
+      local: Servicio_id
+      foreign: id
+      foreignAlias: MedicamentoLugar
+    Medicamento:
+      class: Medicamento
+      local: Medicamento_id
+      foreign: id
+      foreignAlias: MedicamentoLugar
+  indexes:
+    fk_MedicamentoLugar_Servicio1_idx:
+      fields: [Servicio_id]
+    fk_MedicamentoLugar_Medicamento1_idx:
+      fields: [Medicamento_id]
+
+Lote:
+  columns:
+    id:
+      type: bigint
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    existencia:
+      type: float
+      position: 2
+    costo:
+      type: float
+      position: 3
+    costodescuento:
+      type: float
+      position: 4
+    fechaingreso:
+      type: date
+      position: 5
+    terminado:
+      type: float
+      position: 6
+    lotetotal:
+      type: float
+      position: 7
+    fecha_vencimiento:
+      type: date
+      position: 8
+    MedicamentoLugar_id:
+      type: bigint
+      notnull: true
+      position: 9
+  relations:
+    MedicamentoLugar:
+      class: MedicamentoLugar
+      local: MedicamentoLugar_id
+      foreign: id
+      foreignAlias: Lote
+  indexes:
+    fk_Lote_MedicamentoLugar1_idx:
+      fields: [MedicamentoLugar_id]
+
+MovimientoLote:
+  columns:
+    id:
+      type: bigint
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    cant_entrada:
+      type: float
+      position: 2
+    cant_salida:
+      type: float
+      position: 3
+    ultima_existencia:
+      type: float
+      position: 4
+    Lote_id:
+      type: bigint
+      notnull: true
+      position: 5
+    MovimientoMedicamento_id:
+      type: bigint
+      notnull: true
+      position: 6
+  relations:
+    Lote:
+      class: Lote
+      local: Lote_id
+      foreign: id
+      foreignAlias: MovimientoLote
+    MovimientoMedicamento:
+      class: MovimientoMedicamento
+      local: MovimientoMedicamento_id
+      foreign: id
+      foreignAlias: MovimientoLote
+  indexes:
+    fk_MovimientoLote_Lote1_idx:
+      fields: [Lote_id]
+    fk_MovimientoLote_MovimientoMedicamento1_idx:
+      fields: [MovimientoMedicamento_id]
+
+MovimientoMedicamento:
+  columns:
+    id:
+      type: bigint
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    cant_entrada:
+      type: float
+      position: 2
+    cant_salida:
+      type: float
+      position: 3
+    ultima_existencia:
+      type: float
+      position: 4
+    fechahora:
+      type: datetime
+      position: 5
+    usuario_id:
+      type: bigint
+      position: 6
+    host:
+      type: string(45)
+      position: 7
+    motivo:
+      type: string(255)
+      position: 8
+    costo:
+      type: float
+      default: 0
+      position: 9
+    DetalleCompra_id:
+      type: bigint
+      position: 10
+    DetalleRequisicion_id:
+      type: bigint
+      position: 11
+    MedicamentoLugar_id:
+      type: bigint
+      notnull: true
+      position: 12
+  relations:
+    DetalleCompra:
+      class: DetalleCompra
+      local: DetalleCompra_id
+      foreign: id
+      foreignAlias: MovimientoMedicamento
+    DetalleRequisicion:
+      class: DetalleRequisicion
+      local: DetalleRequisicion_id
+      foreign: id
+      foreignAlias: MovimientoMedicamento
+    MedicamentoLugar:
+      class: MedicamentoLugar
+      local: MedicamentoLugar_id
+      foreign: id
+      foreignAlias: MovimientoMedicamento
+  indexes:
+    fk_MovimientoMedicamento_DetalleCompra1_idx:
+      fields: [DetalleCompra_id]
+    fk_MovimientoMedicamento_DetalleRequisicion1_idx:
+      fields: [DetalleRequisicion_id]
+    fk_MovimientoMedicamento_MedicamentoLugar1_idx:
+      fields: [MedicamentoLugar_id]
+
+Compra:
+  columns:
+    id:
+      type: bigint
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    fechahora:
+      type: datetime
+      notnull: true
+      position: 2
+    total:
+      type: float
+      notnull: true
+      position: 3
+    factura:
+      type: string(8)
+      notnull: true
+      position: 4
+    anulada:
+      type: boolean
+      default: 0
+      position: 5
+    credito:
+      type: boolean
+      default: 0
+      position: 6
+    usuario_id:
+      type: bigint
+      position: 7
+    host:
+      type: string(45)
+      position: 8
+    Proveedor_id:
+      type: integer
+      notnull: true
+      position: 9
+    es_farmacia:
+      type: boolean
+      position: 10
+    Servicio_id:
+      type: bigint
+      position: 11
+  relations:
+    Proveedor:
+      class: Proveedor
+      local: Proveedor_id
+      foreign: id
+      foreignAlias: Compra
+  indexes:
+    fk_Compra_Proveedor1_idx:
+      fields: [Proveedor_id]
+
+DetalleCompra:
+  columns:
+    id:
+      type: bigint
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    cantidad:
+      type: float
+      position: 2
+    costo:
+      type: float
+      position: 3
+    subtotal:
+      type: float
+      position: 4
+    precio:
+      type: float
+      position: 5
+    precioventa:
+      type: float
+      position: 6
+    cant_devuelta:
+      type: float
+      position: 7
+    anulada:
+      type: boolean
+      position: 8
+    Compra_id:
+      type: bigint
+      notnull: true
+      position: 9
+    MedicamentoLugar_id:
+      type: bigint
+      notnull: true
+      position: 10
+  relations:
+    Compra:
+      class: Compra
+      local: Compra_id
+      foreign: id
+      foreignAlias: DetalleCompra
+    MedicamentoLugar:
+      class: MedicamentoLugar
+      local: MedicamentoLugar_id
+      foreign: id
+      foreignAlias: DetalleCompra
+  indexes:
+    fk_DetalleCompra_Compra1_idx:
+      fields: [Compra_id]
+    fk_DetalleCompra_MedicamentoLugar1_idx:
+      fields: [MedicamentoLugar_id]
+
+Aseguradora:
+  columns:
+    id:
+      type: integer
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    nombre:
+      type: string(45)
+      notnull: true
+      position: 2
+    habiitado:
+      type: boolean
+      position: 3
+
+Requisicion:
+  columns:
+    id:
+      type: integer
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    fechahora:
+      type: datetime
+      position: 2
+    usuario_id:
+      type: bigint
+      position: 3
+    host:
+      type: string(45)
+      position: 4
+    anulada:
+      type: boolean
+      default: 0
+      position: 5
+    entregada:
+      type: boolean
+      default: 0
+      position: 6
+    parapaciente:
+      type: boolean
+      default: 0
+      position: 7
+    Servicio_id:
+      type: tinyint
+      position: 8
+    Controlingresos_id:
+      type: bigint
+      position: 9
+    es_farmacia:
+      type: boolean
+      position: 10
+  relations:
+    Servicio:
+      class: Servicio
+      local: Servicio_id
+      foreign: id
+      foreignAlias: Requisicion
+    Controlingresos:
+      class: Controlingresos
+      local: Controlingresos_id
+      foreign: id
+      foreignAlias: Requisicion
+  indexes:
+    fk_Requisicion_Servicio1_idx:
+      fields: [Servicio_id]
+    fk_Requisicion_Controlingresos1_idx:
+      fields: [Controlingresos_id]
+
+DetalleRequisicion:
+  columns:
+    id:
+      type: bigint
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    cantidad:
+      type: float
+      position: 2
+    cantidad_real:
+      type: float
+      position: 3
+    cantidad_entregada:
+      type: float
+      position: 4
+    cantidad_entregada_real:
+      type: float
+      position: 5
+    cantidad_devuelta:
+      type: float
+      position: 6
+    cantidad_devuelta_real:
+      type: float
+      position: 7
+    cantidad_suministrada:
+      type: float
+      position: 8
+    cantidad_suministrada_real:
+      type: float
+      position: 9
+    anulado:
+      type: boolean
+      position: 10
+    devolver:
+      type: boolean
+      position: 11
+    Requisicion_id:
+      type: integer
+      notnull: true
+      position: 12
+    MedicamentoLugar_id:
+      type: bigint
+      notnull: true
+      position: 13
+    derivado_id:
+      type: integer
+      notnull: true
+      position: 14
+  relations:
+    Requisicion:
+      class: Requisicion
+      local: Requisicion_id
+      foreign: id
+      foreignAlias: DetalleRequisicion
+    MedicamentoLugar:
+      class: MedicamentoLugar
+      local: MedicamentoLugar_id
+      foreign: id
+      foreignAlias: DetalleRequisicion
+    derivado:
+      class: derivado
+      local: derivado_id
+      foreign: id
+      foreignAlias: DetalleRequisicion
+  indexes:
+    fk_DetalleRequisicion_Requisicion1_idx:
+      fields: [Requisicion_id]
+    fk_DetalleRequisicion_MedicamentoLugar1_idx:
+      fields: [MedicamentoLugar_id]
+    fk_DetalleRequisicion_derivado1_idx:
+      fields: [derivado_id]
+
+Habitaciones:
+  columns:
+    id:
+      type: integer
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    habitacion:
+      type: string(5)
+      position: 2
+    ocupada:
+      type: boolean
+      position: 3
+    habilitado:
+      type: boolean
+      position: 4
+    Servicio_id:
+      type: tinyint
+      notnull: true
+      position: 5
+  relations:
+    Servicio:
+      class: Servicio
+      local: Servicio_id
+      foreign: id
+      foreignAlias: Habitaciones
+  indexes:
+    fk_Habitaciones_Servicio1_idx:
+      fields: [Servicio_id]
+
+MovimientoServicio:
+  columns:
+    id:
+      type: bigint
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    cant_entrada:
+      type: string(45)
+      position: 2
+    entregado:
+      type: boolean
+      position: 3
+    anulado:
+      type: boolean
+      position: 4
+    DetalleRequisicion_id:
+      type: bigint
+      notnull: true
+      position: 5
+    MovimientoMedicamento_id_a_:
+      type: bigint
+      notnull: true
+      position: 6
+    MovimientoMedicamento_id_b_:
+      type: bigint
+      notnull: true
+      position: 7
+  relations:
+    DetalleRequisicion:
+      class: DetalleRequisicion
+      local: DetalleRequisicion_id
+      foreign: id
+      foreignAlias: MovimientoServicio
+    MovimientoMedicamentoIdA_:
+      class: MovimientoMedicamento
+      local: MovimientoMedicamento_id_a_
+      foreign: id
+      foreignAlias: MovimientoServicio
+    MovimientoMedicamentoIdB_:
+      class: MovimientoMedicamento
+      local: MovimientoMedicamento_id_b_
+      foreign: id
+      foreignAlias: MovimientoServicio
+  indexes:
+    fk_MovimientoServicio_DetalleRequisicion1_idx:
+      fields: [DetalleRequisicion_id]
+    fk_MovimientoServicio_MovimientoMedicamento1_idx:
+      fields: [MovimientoMedicamento_id_a_]
+    fk_MovimientoServicio_MovimientoMedicamento2_idx:
+      fields: [MovimientoMedicamento_id_b_]
+
+Escolaridad:
+  columns:
+    id:
+      type: integer
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    escolaridad:
+      type: string(45)
+      position: 2
+    habilitado:
+      type: boolean
+      position: 3
+
+Alimentos:
+  columns:
+    id:
+      type: bigint
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    alimento:
+      type: string(255)
+      position: 2
+    precio:
+      type: float
+      position: 3
+    precioventa:
+      type: float
+      position: 4
+    habilitado:
+      type: boolean
+      position: 5
+
+ServiciosSolicitados:
+  columns:
+    id:
+      type: bigint
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    examen:
+      type: string(255)
+      position: 2
+    habilitado:
+      type: boolean
+      position: 3
+    Servicio_id:
+      type: tinyint
+      notnull: true
+      position: 4
+  relations:
+    Servicio:
+      class: Servicio
+      local: Servicio_id
+      foreign: id
+      foreignAlias: ServiciosSolicitados
+  indexes:
+    fk_ServiciosSolicitados_Servicio1_idx:
+      fields: [Servicio_id]
+
+IngresosAlimentos:
+  columns:
+    id:
+      type: bigint
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    precioventa:
+      type: float
+      position: 2
+    subtotal:
+      type: float
+      position: 3
+    cantidad:
+      type: float
+      position: 4
+    fecha:
+      type: date
+      position: 5
+    usuario_id:
+      type: integer
+      position: 6
+    Controlingresos_id:
+      type: bigint
+      notnull: true
+      position: 7
+    Alimentos_id:
+      type: bigint
+      notnull: true
+      position: 8
+  relations:
+    Alimentos:
+      class: Alimentos
+      local: Alimentos_id
+      foreign: id
+      foreignAlias: IngresosAlimentos
+    Controlingresos:
+      class: Controlingresos
+      local: Controlingresos_id
+      foreign: id
+      foreignAlias: IngresosAlimentos
+  indexes:
+    fk_Alimentos_has_Controlingresos_Controlingresos1_idx:
+      fields: [Controlingresos_id]
+    fk_Alimentos_has_Controlingresos_Alimentos1_idx:
+      fields: [Alimentos_id]
+
+IngresosServicios:
+  columns:
+    id:
+      type: bigint
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    cantidad:
+      type: float
+      position: 2
+    precioventa:
+      type: float
+      position: 3
+    subtotal:
+      type: float
+      position: 4
+    fecha:
+      type: date
+      position: 5
+    usuario_id:
+      type: bigint
+      position: 6
+    Habitaciones_id:
+      type: integer
+      notnull: true
+      position: 7
+    PrecioServicios_id:
+      type: bigint
+      notnull: true
+      position: 8
+  relations:
+    Habitaciones:
+      class: Habitaciones
+      local: Habitaciones_id
+      foreign: id
+      foreignAlias: IngresosServicios
+    PrecioServicios:
+      class: PrecioServicios
+      local: PrecioServicios_id
+      foreign: id
+      foreignAlias: IngresosServicios
+  indexes:
+    fk_ServiciosSolicitados_has_Habitaciones_Habitaciones1_idx:
+      fields: [Habitaciones_id]
+    fk_IngresosServicios_PrecioServicios1_idx:
+      fields: [PrecioServicios_id]
+
+Laboratorio:
+  columns:
+    id:
+      type: integer
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    nombre:
+      type: string(255)
+      position: 2
+    observaciones:
+      type: text
+      position: 3
+    habilitado:
+      type: boolean
+      position: 4
+
+PrecioServicios:
+  columns:
+    id:
+      type: bigint
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    precio:
+      type: float
+      position: 2
+    titulo:
+      type: string(10)
+      position: 3
+    ServiciosSolicitados_id:
+      type: bigint
+      notnull: true
+      position: 4
+  relations:
+    ServiciosSolicitados:
+      class: ServiciosSolicitados
+      local: ServiciosSolicitados_id
+      foreign: id
+      foreignAlias: PrecioServicios
+  indexes:
+    fk_PrecioServicios_ServiciosSolicitados1_idx:
+      fields: [ServiciosSolicitados_id]
+
+Equipoextra:
+  columns:
+    id:
+      type: integer
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    equipo:
+      type: string(255)
+      position: 2
+    precio:
+      type: float
+      position: 3
+    existencia:
+      type: float
+      position: 4
+    utilizados:
+      type: float
+      position: 5
+
+Detalleextra:
+  columns:
+    id:
+      type: bigint
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    precioventa:
+      type: float
+      position: 2
+    cantidad:
+      type: float
+      position: 3
+    fechahora:
+      type: datetime
+      position: 4
+    Controlingresos_id:
+      type: bigint
+      notnull: true
+      position: 5
+    Equipoextra_id:
+      type: integer
+      notnull: true
+      position: 6
+  relations:
+    Equipoextra:
+      class: Equipoextra
+      local: Equipoextra_id
+      foreign: id
+      foreignAlias: Detalleextra
+    Controlingresos:
+      class: Controlingresos
+      local: Controlingresos_id
+      foreign: id
+      foreignAlias: Detalleextra
+  indexes:
+    fk_IngresosServicios_has_Equipoextra_Equipoextra1_idx:
+      fields: [Equipoextra_id]
+    fk_Detalleextra_Controlingresos1_idx:
+      fields: [Controlingresos_id]
+
+Ropaextra:
+  columns:
+    id:
+      type: integer
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    ropaextra:
+      type: string(255)
+      position: 2
+    precio:
+      type: float
+      position: 3
+    existencia:
+      type: float
+      position: 4
+    utilizados:
+      type: float
+      position: 5
+
+Detalleropa:
+  columns:
+    id:
+      type: integer
+      primary: true
+      notnull: true
+      autoincrement: true
+      position: 1
+    precioventa:
+      type: float
+      position: 2
+    cantidad:
+      type: float
+      position: 3
+    fechahora:
+      type: datetime
+      position: 4
+    Controlingresos_id:
+      type: bigint
+      notnull: true
+      position: 5
+    Ropaextra_id:
+      type: integer
+      notnull: true
+      position: 6
+  relations:
+    Ropaextra:
+      class: Ropaextra
+      local: Ropaextra_id
+      foreign: id
+      foreignAlias: Detalleropa
+    Controlingresos:
+      class: Controlingresos
+      local: Controlingresos_id
+      foreign: id
+      foreignAlias: Detalleropa
+  indexes:
+    fk_IngresosServicios_has_Ropaextra_Ropaextra1_idx:
+      fields: [Ropaextra_id]
+    fk_Detalleropa_Controlingresos1_idx:
+      fields: [Controlingresos_id]
+
