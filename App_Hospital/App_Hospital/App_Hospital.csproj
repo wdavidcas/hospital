@@ -192,6 +192,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlimentoController.cs" />
     <Compile Include="Controllers\AseguradoraController.cs" />
+    <Compile Include="Controllers\CategoriaController.cs" />
+    <Compile Include="Controllers\ContactoController.cs" />
     <Compile Include="Controllers\EspecialidadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -201,6 +203,8 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Alimento.cs" />
     <Compile Include="Models\Aseguradora.cs" />
+    <Compile Include="Models\Categoria.cs" />
+    <Compile Include="Models\Contacto.cs" />
     <Compile Include="Models\Especialidad.cs" />
     <Compile Include="Models\ModeloDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -347,6 +351,16 @@
     <Content Include="Views\Aseguradora\Create.cshtml" />
     <Content Include="Views\Aseguradora\Edit.cshtml" />
     <Content Include="Views\Aseguradora\Delete.cshtml" />
+    <Content Include="Views\Categoria\Index.cshtml" />
+    <Content Include="Views\Categoria\Details.cshtml" />
+    <Content Include="Views\Categoria\Create.cshtml" />
+    <Content Include="Views\Categoria\Edit.cshtml" />
+    <Content Include="Views\Categoria\Delete.cshtml" />
+    <Content Include="Views\Contacto\Index.cshtml" />
+    <Content Include="Views\Contacto\Details.cshtml" />
+    <Content Include="Views\Contacto\Create.cshtml" />
+    <Content Include="Views\Contacto\Edit.cshtml" />
+    <Content Include="Views\Contacto\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
