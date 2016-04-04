@@ -190,6 +190,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AlimentoController.cs" />
+    <Compile Include="Controllers\AseguradoraController.cs" />
     <Compile Include="Controllers\EspecialidadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -197,6 +199,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Alimento.cs" />
+    <Compile Include="Models\Aseguradora.cs" />
     <Compile Include="Models\Especialidad.cs" />
     <Compile Include="Models\ModeloDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -333,6 +337,16 @@
     <Content Include="Views\Especialidad\Create.cshtml" />
     <Content Include="Views\Especialidad\Edit.cshtml" />
     <Content Include="Views\Especialidad\Delete.cshtml" />
+    <Content Include="Views\Alimento\Index.cshtml" />
+    <Content Include="Views\Alimento\Details.cshtml" />
+    <Content Include="Views\Alimento\Create.cshtml" />
+    <Content Include="Views\Alimento\Edit.cshtml" />
+    <Content Include="Views\Alimento\Delete.cshtml" />
+    <Content Include="Views\Aseguradora\Index.cshtml" />
+    <Content Include="Views\Aseguradora\Details.cshtml" />
+    <Content Include="Views\Aseguradora\Create.cshtml" />
+    <Content Include="Views\Aseguradora\Edit.cshtml" />
+    <Content Include="Views\Aseguradora\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -18,5 +18,9 @@ namespace App_Hospital.Models
         {
             base.OnModelCreating(modelBuilder);
         }
+
+        public DbSet<Alimento> Alimentoes { get; set; }
+
+        public DbSet<Aseguradora> Aseguradoras { get; set; }
     }
 }
