@@ -204,8 +204,10 @@
     <Compile Include="Models\Alimento.cs" />
     <Compile Include="Models\Aseguradora.cs" />
     <Compile Include="Models\Categoria.cs" />
+    <Compile Include="Models\Class1.cs" />
     <Compile Include="Models\Contacto.cs" />
     <Compile Include="Models\Especialidad.cs" />
+    <Compile Include="Models\EstadoCivil.cs" />
     <Compile Include="Models\ModeloDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

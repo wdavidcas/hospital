@@ -2,9 +2,15 @@
 
 @{
     ViewBag.Title = "Index";
+
+    var grid = new WebGrid(
+            source:Model,
+            rowsPerPage:4
+        );
 }
 
 <h2>Index</h2>
+
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -31,3 +37,15 @@
 }
 
 </table>
+
+@grid.GetHtml(
+columns:grid.Columns
+    (
+        grid.Column("ID","ID"),
+        grid.Column("Nombre","Especialidad"),
+        grid.Column("Descripcion","Descripcion"),
+        grid.Column("Editar",@Html.ActionLink("Editar","Edit").ToString()),
+        
+        
+    )
+)
