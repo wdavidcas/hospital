@@ -97,8 +97,9 @@ C:\hospital\App_Hospital\App_Hospital\bin\Microsoft.Data.OData.dll
 C:\hospital\App_Hospital\App_Hospital\bin\Microsoft.Web.Infrastructure.dll
 C:\hospital\App_Hospital\App_Hospital\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
 C:\hospital\App_Hospital\App_Hospital\bin\Microsoft.Web.WebPages.OAuth.dll
-C:\hospital\App_Hospital\App_Hospital\bin\MySql.Data.dll
 C:\hospital\App_Hospital\App_Hospital\bin\Newtonsoft.Json.dll
+C:\hospital\App_Hospital\App_Hospital\bin\PagedList.dll
+C:\hospital\App_Hospital\App_Hospital\bin\PagedList.Mvc.dll
 C:\hospital\App_Hospital\App_Hospital\bin\System.Net.Http.dll
 C:\hospital\App_Hospital\App_Hospital\bin\System.Net.Http.WebRequest.dll
 C:\hospital\App_Hospital\App_Hospital\bin\System.Spatial.dll
@@ -113,6 +114,8 @@ C:\hospital\App_Hospital\App_Hospital\bin\System.Web.WebPages.Razor.dll
 C:\hospital\App_Hospital\App_Hospital\bin\WebGrease.dll
 C:\hospital\App_Hospital\App_Hospital\bin\WebMatrix.Data.dll
 C:\hospital\App_Hospital\App_Hospital\bin\WebMatrix.WebData.dll
+C:\hospital\App_Hospital\App_Hospital\bin\PagedList.xml
+C:\hospital\App_Hospital\App_Hospital\bin\PagedList.Mvc.xml
 C:\hospital\App_Hospital\App_Hospital\bin\EntityFramework.xml
 C:\hospital\App_Hospital\App_Hospital\bin\Newtonsoft.Json.xml
 C:\hospital\App_Hospital\App_Hospital\bin\System.Net.Http.xml
@@ -166,3 +169,4 @@ C:\hospital\App_Hospital\App_Hospital\bin\zh-Hant\System.Spatial.resources.dll
 C:\hospital\App_Hospital\App_Hospital\obj\Debug\App_Hospital.csprojResolveAssemblyReference.cache
 C:\hospital\App_Hospital\App_Hospital\obj\Debug\App_Hospital.dll
 C:\hospital\App_Hospital\App_Hospital\obj\Debug\App_Hospital.pdb
+C:\hospital\App_Hospital\App_Hospital\bin\MySql.Data.dll

@@ -87,6 +87,8 @@ C:\hospital\App_Hospital\App_Hospital.Tests\bin\Debug\Microsoft.Data.OData.dll
 C:\hospital\App_Hospital\App_Hospital.Tests\bin\Debug\Microsoft.Web.Infrastructure.dll
 C:\hospital\App_Hospital\App_Hospital.Tests\bin\Debug\Microsoft.Web.Mvc.FixedDisplayModes.dll
 C:\hospital\App_Hospital\App_Hospital.Tests\bin\Debug\Newtonsoft.Json.dll
+C:\hospital\App_Hospital\App_Hospital.Tests\bin\Debug\PagedList.dll
+C:\hospital\App_Hospital\App_Hospital.Tests\bin\Debug\PagedList.Mvc.dll
 C:\hospital\App_Hospital\App_Hospital.Tests\bin\Debug\System.Net.Http.dll
 C:\hospital\App_Hospital\App_Hospital.Tests\bin\Debug\System.Net.Http.WebRequest.dll
 C:\hospital\App_Hospital\App_Hospital.Tests\bin\Debug\System.Spatial.dll
@@ -107,6 +109,8 @@ C:\hospital\App_Hospital\App_Hospital.Tests\bin\Debug\DotNetOpenAuth.OAuth.dll
 C:\hospital\App_Hospital\App_Hospital.Tests\bin\Debug\DotNetOpenAuth.OpenId.RelyingParty.dll
 C:\hospital\App_Hospital\App_Hospital.Tests\bin\Debug\DotNetOpenAuth.OpenId.dll
 C:\hospital\App_Hospital\App_Hospital.Tests\bin\Debug\App_Hospital.pdb
+C:\hospital\App_Hospital\App_Hospital.Tests\bin\Debug\PagedList.xml
+C:\hospital\App_Hospital\App_Hospital.Tests\bin\Debug\PagedList.Mvc.xml
 C:\hospital\App_Hospital\App_Hospital.Tests\bin\Debug\Newtonsoft.Json.xml
 C:\hospital\App_Hospital\App_Hospital.Tests\bin\Debug\System.Net.Http.xml
 C:\hospital\App_Hospital\App_Hospital.Tests\bin\Debug\System.Net.Http.WebRequest.xml

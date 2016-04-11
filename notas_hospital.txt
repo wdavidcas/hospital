@@ -1,0 +1,1 @@
+<p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>

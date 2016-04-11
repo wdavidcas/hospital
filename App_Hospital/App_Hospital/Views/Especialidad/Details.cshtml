@@ -1,13 +1,11 @@
 ﻿@model App_Hospital.Models.Especialidad
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
-<fieldset>
-    <legend>Especialidad</legend>
+    <h3 style="color:blueviolet">Informaci&oacute;n de la especialidad</h3>
 
     <div class="display-label">
          @Html.DisplayNameFor(model => model.Nombre)
@@ -15,8 +13,16 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Nombre)
     </div>
-</fieldset>
+    <br />
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Descripcion)
+    </div>
+
+<br /><br />
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ID }, new {@class="btn btn-info active" }) 
+    @Html.ActionLink("Cancelar", "Index", null, new {@class="btn btn-danger active" })
 </p>
