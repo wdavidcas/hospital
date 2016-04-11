@@ -44,7 +44,7 @@ columns:grid.Columns
         grid.Column("ID","ID"),
         grid.Column("Nombre","Especialidad"),
         grid.Column("Descripcion","Descripcion"),
-        grid.Column("Editar",@Html.ActionLink("Editar","Edit").ToString()),
+        grid.Column("Editar",@Html.ActionLink(header: "Edit", format: @<text><a href="@Url.Action("Edit", "Contact", new { id = item.id })" ></text>),
         
         
     )
