@@ -1,17 +1,16 @@
 ﻿@model App_Hospital.Models.Especialidad
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
 @{
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h3 style="color:blueviolet">Editar información</h3>
 
+<br />
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>Especialidad</legend>
+    @Html.ValidationSummary(true)    
 
         @Html.HiddenFor(model => model.ID)
 
@@ -22,15 +21,20 @@
             @Html.EditorFor(model => model.Nombre)
             @Html.ValidationMessageFor(model => model.Nombre)
         </div>
-
+        <div class="editor-label">
+            @Html.LabelFor(model=>model.Descripcion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Descripcion, new { @class="form-control"})
+        </div>
+    <br />
         <p>
-            <input type="submit" value="Save" />
-        </p>
-    </fieldset>
+            <input type="submit" value="Guardar" class="btn btn-primary active" />
+        </p>   
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Cancelar", "Index", null, new{@class="btn btn-danger  active"})
 </div>
 
 @section Scripts {

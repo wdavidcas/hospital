@@ -1,51 +1,73 @@
-﻿@model IEnumerable<App_Hospital.Models.Especialidad>
+﻿@model PagedList.IPagedList<App_Hospital.Models.Especialidad>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
 @{
-    ViewBag.Title = "Index";
-
-    var grid = new WebGrid(
-            source:Model,
-            rowsPerPage:4
-        );
+    ViewBag.Title = "Index";  
 }
 
-<h2>Index</h2>
+<h3 style="color:blueviolet">Administraci&oacute;n de Especialidades</h3>
+<br />
 
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th></th>
-    </tr>
+<div class="container-fluid">
+    <div class="row">        
+        <div class="col-md-8">
+            @using (Html.BeginForm("Index","Especialidad",FormMethod.Get))
+            {
+                <p>
+                    Búsqueda @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)   
+                    <input type="submit" value="Buscar" class="btn btn-success btn-xs active"/>
+                </p>
+            }
+        </div>
+        <div class="col-md-4">
+            <p> @Html.ActionLink("Crear Nueva", "Create", null, new { @class="btn btn-primary  active"}) </p>
+        </div>
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    <br /><br />
+    
+    <div class="row">
+        <table border="1" class="table table-hover">
+        <tr>
+            <th>
+                @Html.ActionLink("Especialidad", "Index", new { sortOrder = ViewBag.NameSortParm,currentFilter=ViewBag.CurrentFilter})            
+            </th>
+            <th>
+                Descripción
+            </th>
+        </tr>
 
-</table>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem=>item.Descripcion)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.ID }, new { @class="btn btn-default btn-xs"}) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.ID }, new { @class="btn btn-info btn-xs" }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id=item.ID},new{@class="btn btn-danger btn-xs" })
+                </td>
+            </tr>
+        }
+        </table>
+    </div>
 
-@grid.GetHtml(
-columns:grid.Columns
-    (
-        grid.Column("ID","ID"),
-        grid.Column("Nombre","Especialidad"),
-        grid.Column("Descripcion","Descripcion"),
-        grid.Column("Editar",@Html.ActionLink("Editar","Edit").ToString()),
-        
-        
-    )
-)
+    <div class="row">
+        <div class="col-md-8">
+            @Html.PagedListPager(Model, page => Url.Action("Index",
+            new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        </div>
+        <div class="col-md-4">
+            Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+        </div>
+    </div>
+</div>
+
+

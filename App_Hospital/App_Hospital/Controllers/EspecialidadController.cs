@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 using App_Hospital.Models;
 
 namespace App_Hospital.Controllers
@@ -16,9 +17,48 @@ namespace App_Hospital.Controllers
         //
         // GET: /Especialidad/
 
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder,string currentFilter, string searchString, int? page)
         {
-            return View(db.Especialidades.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var especialidades = from s in db.Especialidades
+                           select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                especialidades = especialidades.Where(s => s.Nombre.Contains(searchString)
+                    || s.Descripcion.Contains(s.Descripcion)
+                    );
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    especialidades = especialidades.OrderByDescending(s => s.Nombre);
+                    break;
+                default:
+                    especialidades = especialidades.OrderBy(s => s.ID);
+                    break;
+            }
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);            
+
+            return View(especialidades.ToPagedList(pageNumber,pageSize));
+            //return View(db.Especialidades.ToList());
         }
 
         //

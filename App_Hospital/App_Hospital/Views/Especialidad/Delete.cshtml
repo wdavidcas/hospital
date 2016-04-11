@@ -1,14 +1,11 @@
 ﻿@model App_Hospital.Models.Especialidad
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
 @{
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<fieldset>
-    <legend>Especialidad</legend>
+<h3 style="color:blue">¿Está seguro que desea eliminar la siguiente información?</h3>
 
     <div class="display-label">
          @Html.DisplayNameFor(model => model.Nombre)
@@ -16,11 +13,18 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Nombre)
     </div>
-</fieldset>
+    <br />
+    <div class="display-label">
+        @Html.DisplayNameFor(model=>model.Descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model=>model.Descripcion)
+    </div>    
+<br /><br />
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
+        <input type="submit" value="Eliminar" class="btn btn-primary active"/> 
+        @Html.ActionLink("Cancelar", "Index", null, new { @class="btn btn-danger active"})
     </p>
 }
