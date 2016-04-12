@@ -169,4 +169,9 @@ C:\hospital\App_Hospital\App_Hospital\bin\zh-Hant\System.Spatial.resources.dll
 C:\hospital\App_Hospital\App_Hospital\obj\Debug\App_Hospital.csprojResolveAssemblyReference.cache
 C:\hospital\App_Hospital\App_Hospital\obj\Debug\App_Hospital.dll
 C:\hospital\App_Hospital\App_Hospital\obj\Debug\App_Hospital.pdb
-C:\hospital\App_Hospital\App_Hospital\bin\MySql.Data.dll
+C:\hospital\App_Hospital\App_Hospital\bin\System.Net.Http.Formatting.dll
+C:\hospital\App_Hospital\App_Hospital\bin\System.Web.Http.dll
+C:\hospital\App_Hospital\App_Hospital\bin\System.Web.Http.WebHost.dll
+C:\hospital\App_Hospital\App_Hospital\bin\System.Net.Http.Formatting.xml
+C:\hospital\App_Hospital\App_Hospital\bin\System.Web.Http.xml
+C:\hospital\App_Hospital\App_Hospital\bin\System.Web.Http.WebHost.xml

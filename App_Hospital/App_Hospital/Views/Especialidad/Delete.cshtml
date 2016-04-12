@@ -1,4 +1,5 @@
 ﻿@model App_Hospital.Models.Especialidad
+
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
 @{
@@ -21,6 +22,7 @@
         @Html.DisplayFor(model=>model.Descripcion)
     </div>    
 <br /><br />
+
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     <p>

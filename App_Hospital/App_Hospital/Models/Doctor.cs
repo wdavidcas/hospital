@@ -34,11 +34,11 @@ namespace App_Hospital.Models
         [Required(ErrorMessage="Ingrese usuario")]
         public string Usuario { get; set; }
 
-        [Display(Name="Es accionista?")]
-        public string Accionista { get; set; }
+        [Display(Name="Accionista?")]
+        public bool Accionista { get; set; }
 
         
-        public string EspecialidadID { get; set; }
+        public int EspecialidadID { get; set; }
 
         public virtual Especialidad Especialidad { get; set; }
 

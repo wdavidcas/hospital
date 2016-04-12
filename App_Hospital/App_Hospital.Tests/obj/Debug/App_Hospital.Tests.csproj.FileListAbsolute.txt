@@ -162,3 +162,9 @@ C:\hospital\App_Hospital\App_Hospital.Tests\bin\Debug\zh-Hant\System.Spatial.res
 C:\hospital\App_Hospital\App_Hospital.Tests\obj\Debug\App_Hospital.Tests.csprojResolveAssemblyReference.cache
 C:\hospital\App_Hospital\App_Hospital.Tests\obj\Debug\App_Hospital.Tests.dll
 C:\hospital\App_Hospital\App_Hospital.Tests\obj\Debug\App_Hospital.Tests.pdb
+C:\hospital\App_Hospital\App_Hospital.Tests\bin\Debug\System.Net.Http.Formatting.dll
+C:\hospital\App_Hospital\App_Hospital.Tests\bin\Debug\System.Web.Http.dll
+C:\hospital\App_Hospital\App_Hospital.Tests\bin\Debug\System.Web.Http.WebHost.dll
+C:\hospital\App_Hospital\App_Hospital.Tests\bin\Debug\System.Net.Http.Formatting.xml
+C:\hospital\App_Hospital\App_Hospital.Tests\bin\Debug\System.Web.Http.xml
+C:\hospital\App_Hospital\App_Hospital.Tests\bin\Debug\System.Web.Http.WebHost.xml
