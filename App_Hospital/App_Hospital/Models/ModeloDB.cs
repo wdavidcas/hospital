@@ -17,6 +17,7 @@ namespace App_Hospital.Models
         public DbSet<Aseguradora> Aseguradoras { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Contacto> Contactoes { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -24,6 +25,6 @@ namespace App_Hospital.Models
             //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
-        public DbSet<Doctor> Doctors { get; set; }
+        
     }
 }
