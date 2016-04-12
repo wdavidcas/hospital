@@ -15,7 +15,7 @@
 <div class="container-fluid">
     <div class="row">        
         <div class="col-md-8">
-            @using (Html.BeginForm("Index","Especialidad",FormMethod.Get))
+            @using (Html.BeginForm("Index","Doctor",FormMethod.Get))
             {
                 <p>
                     Búsqueda @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)   

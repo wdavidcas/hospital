@@ -97,6 +97,7 @@ C:\hospital\App_Hospital\App_Hospital\bin\Microsoft.Data.OData.dll
 C:\hospital\App_Hospital\App_Hospital\bin\Microsoft.Web.Infrastructure.dll
 C:\hospital\App_Hospital\App_Hospital\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
 C:\hospital\App_Hospital\App_Hospital\bin\Microsoft.Web.WebPages.OAuth.dll
+C:\hospital\App_Hospital\App_Hospital\bin\MySql.Data.dll
 C:\hospital\App_Hospital\App_Hospital\bin\Newtonsoft.Json.dll
 C:\hospital\App_Hospital\App_Hospital\bin\PagedList.dll
 C:\hospital\App_Hospital\App_Hospital\bin\PagedList.Mvc.dll
@@ -166,7 +167,6 @@ C:\hospital\App_Hospital\App_Hospital\bin\ko\System.Spatial.resources.dll
 C:\hospital\App_Hospital\App_Hospital\bin\ru\System.Spatial.resources.dll
 C:\hospital\App_Hospital\App_Hospital\bin\zh-Hans\System.Spatial.resources.dll
 C:\hospital\App_Hospital\App_Hospital\bin\zh-Hant\System.Spatial.resources.dll
-C:\hospital\App_Hospital\App_Hospital\obj\Debug\App_Hospital.csprojResolveAssemblyReference.cache
 C:\hospital\App_Hospital\App_Hospital\obj\Debug\App_Hospital.dll
 C:\hospital\App_Hospital\App_Hospital\obj\Debug\App_Hospital.pdb
-C:\hospital\App_Hospital\App_Hospital\bin\MySql.Data.dll
+C:\hospital\App_Hospital\App_Hospital\obj\Debug\App_Hospital.csprojResolveAssemblyReference.cache

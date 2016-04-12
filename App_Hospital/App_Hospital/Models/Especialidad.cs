@@ -7,8 +7,7 @@ using System.ComponentModel.DataAnnotations;
 namespace App_Hospital.Models
 {
     public class Especialidad
-    {
-               
+    {               
         public int EspecialidadID { get; set; }
         
         [Required(ErrorMessage="Ingrese nombre")]
@@ -21,7 +20,7 @@ namespace App_Hospital.Models
         public string Descripcion { get; set; }
 
         [Display(Name="Habilitado")]
-        public bool Habilitado { get; set; }        
+        public bool Habilitado { get; set; }
     }
 
     [AttributeUsage(AttributeTargets.All)]
@@ -40,6 +39,5 @@ namespace App_Hospital.Models
             else
                 return true;            
         }
-
     }
 }

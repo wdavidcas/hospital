@@ -1,4 +1,5 @@
-﻿@model App_Hospital.Models.Doctor
+﻿@model PagedList.IPagedList<App_Hospital.Models.Doctor>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Edit";
@@ -13,7 +14,7 @@
     <fieldset>
         <legend>Doctor</legend>
 
-        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.DoctorID)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Nombre)

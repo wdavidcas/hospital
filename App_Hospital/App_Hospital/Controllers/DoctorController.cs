@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 using App_Hospital.Models;
 
 namespace App_Hospital.Controllers
@@ -16,9 +17,47 @@ namespace App_Hospital.Controllers
         //
         // GET: /Doctor/
 
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(db.Doctors.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var especialidades = from s in db.Especialidades
+                                 select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                especialidades = especialidades.Where(s => s.Nombre.Contains(searchString)
+                    || s.Descripcion.Contains(s.Descripcion)
+                    );
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    especialidades = especialidades.OrderByDescending(s => s.Nombre);
+                    break;
+                default:
+                    especialidades = especialidades.OrderBy(s => s.EspecialidadID);
+                    break;
+            }
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+
+            return View(especialidades.ToPagedList(pageNumber, pageSize));
         }
 
         //
@@ -39,9 +78,33 @@ namespace App_Hospital.Controllers
 
         public ActionResult Create()
         {
+            EspecialidadesDropDrownList();
             return View();
         }
 
+        /// <summary>
+        /// Metodo que crea la lista de especialidades
+        /// </summary>
+        /// <param name="EspecialidadId"></param>
+        private void EspecialidadesDropDrownList(int? EspecialidadId = 0)
+        {            
+            List<SelectListItem> Especialidades = new
+            List<SelectListItem>();
+            Especialidades.Add(new
+            SelectListItem() { Value = "0", Text = "-", Selected = false });
+
+            foreach (var especialidad in db.Especialidades)
+            {
+                Especialidades.Add(new SelectListItem()
+                {
+                    Value = especialidad.EspecialidadID.ToString(),
+                    Text = especialidad.Nombre.ToString(),
+                    Selected = EspecialidadId == especialidad.EspecialidadID ? true : false
+                });
+                ViewData["EspecialidadID"] = Especialidades;
+            }
+            
+        }
         //
         // POST: /Doctor/Create
 
@@ -49,6 +112,8 @@ namespace App_Hospital.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Doctor doctor)
         {
+            doctor.EspecialidadID = 1;
+            
             if (ModelState.IsValid)
             {
                 db.Doctors.Add(doctor);

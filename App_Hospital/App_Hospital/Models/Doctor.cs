@@ -8,8 +8,7 @@ namespace App_Hospital.Models
 {
     public class Doctor
     {
-
-        public int ID { get; set; }
+        public int DoctorID { get; set; }
 
         [StringLength(50)]
         [Display(Name="Nombre")]
@@ -26,7 +25,7 @@ namespace App_Hospital.Models
         public string Nit { get; set; }
 
         [StringLength(150)]
-        [Display(Name="Observaciones")]
+        [Display(Name="Notas")]
         public string Observaciones { get; set; }
 
         [StringLength(25)]
@@ -34,13 +33,13 @@ namespace App_Hospital.Models
         [Required(ErrorMessage="Ingrese usuario")]
         public string Usuario { get; set; }
 
-        [Display(Name="Es accionista?")]
-        public string Accionista { get; set; }
-
+        [Display(Name="Accionista?")]
+        public bool Accionista { get; set; }
         
-        public string EspecialidadID { get; set; }
+        [Display(Name="Profesión")]        
+        public int EspecialidadID { get; set; }
 
+        [Display(Name="Especialidad")]
         public virtual Especialidad Especialidad { get; set; }
-
     }
 }
