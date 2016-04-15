@@ -19,10 +19,12 @@ namespace App_Hospital.Controllers
 
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            //EspecialidadesDropDrownList();
+
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
-
+            ViewBag.NitSortParm=sortOrder=="Nit" ? "nit_desc":"Nit";
+            
             if (searchString != null)
             {
                 page = 1;
@@ -34,30 +36,40 @@ namespace App_Hospital.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            var especialidades = from s in db.Especialidades
-                                 select s;
+            var doctores = from s in db.Doctors
+                           select s;
+
+            /*if (especialidad == null || especialidad <= 0)
+            {
+                doctores.Where(s=>s.EspecialidadID.Equals(especialidad));
+            }*/
+            
+            
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                especialidades = especialidades.Where(s => s.Nombre.Contains(searchString)
-                    || s.Descripcion.Contains(s.Descripcion)
+                doctores = doctores.Where(s => s.Nombre.Contains(searchString)
+                    || s.Nit.Contains(searchString)
                     );
             }
 
             switch (sortOrder)
             {
                 case "name_desc":
-                    especialidades = especialidades.OrderByDescending(s => s.Nombre);
+                    doctores = doctores.OrderByDescending(s => s.Nombre);
+                    break;
+                case "nit_desc":
+                    doctores = doctores.OrderByDescending(s => s.Nit);
                     break;
                 default:
-                    especialidades = especialidades.OrderBy(s => s.EspecialidadID);
+                    doctores = doctores.OrderBy(s => s.DoctorID);
                     break;
             }
 
             int pageSize = 10;
             int pageNumber = (page ?? 1);
 
-            return View(especialidades.ToPagedList(pageNumber, pageSize));
+            return View(doctores.ToPagedList(pageNumber, pageSize));
         }
 
         //
@@ -70,6 +82,7 @@ namespace App_Hospital.Controllers
             {
                 return HttpNotFound();
             }
+            EspecialidadesDropDrownList(doctor.EspecialidadID);
             return View(doctor);
         }
 
@@ -91,7 +104,7 @@ namespace App_Hospital.Controllers
             List<SelectListItem> Especialidades = new
             List<SelectListItem>();
             Especialidades.Add(new
-            SelectListItem() { Value = "0", Text = "-", Selected = false });
+            SelectListItem() { Value = "0", Text = "::Seleccione especialidad::", Selected = false });
 
             foreach (var especialidad in db.Especialidades)
             {
@@ -111,9 +124,7 @@ namespace App_Hospital.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Doctor doctor)
-        {
-            doctor.EspecialidadID = 1;
-            
+        {            
             if (ModelState.IsValid)
             {
                 db.Doctors.Add(doctor);
@@ -129,11 +140,13 @@ namespace App_Hospital.Controllers
 
         public ActionResult Edit(int id = 0)
         {
+            
             Doctor doctor = db.Doctors.Find(id);
             if (doctor == null)
             {
                 return HttpNotFound();
             }
+            EspecialidadesDropDrownList(doctor.EspecialidadID);
             return View(doctor);
         }
 

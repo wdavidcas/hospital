@@ -21,7 +21,7 @@ namespace App_Hospital.Controllers
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.CurrentFilter = searchString;
 
             if (searchString != null)
             {
@@ -30,9 +30,7 @@ namespace App_Hospital.Controllers
             else
             {
                 searchString = currentFilter;
-            }
-
-            ViewBag.CurrentFilter = searchString;
+            }            
 
             var especialidades = from s in db.Especialidades
                            select s;
@@ -40,10 +38,11 @@ namespace App_Hospital.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 especialidades = especialidades.Where(s => s.Nombre.Contains(searchString)
-                    || s.Descripcion.Contains(s.Descripcion)
+                    || s.Descripcion.Contains(searchString)
                     );
             }
 
+            //verifica el orden
             switch (sortOrder)
             {
                 case "name_desc":

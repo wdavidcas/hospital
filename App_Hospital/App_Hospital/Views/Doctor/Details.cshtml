@@ -1,64 +1,88 @@
 ﻿@model App_Hospital.Models.Doctor
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Edit";
 }
 
-<h2>Details</h2>
+<h3 style="color:blueviolet">Informaci&oacute;n del doctor</h3>
 
-<fieldset>
-    <legend>Doctor</legend>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Nombre)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Nombre)
-    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1 display-label">
+                @Html.LabelFor(model => model.Nombre)
+            </div>
+            <div class="col-md-3">
+                @Html.DisplayFor(model => model.Nombre,new {style="width:275px" , placeholder="Ingrese nombre"})<br />
+                <span style="font-size:x-small">@Html.ValidationMessageFor(model => model.Nombre)</span>                
+            </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Direccion)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Direccion)
-    </div>
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.Direccion)
+            </div>
+            <div class="col-md-7">
+                @Html.DisplayFor(model => model.Direccion, new { style="width:475px", placeholder="Ingrese dirección"})<br />
+                <span style="font-size:x-small">@Html.ValidationMessageFor(model => model.Direccion)</span>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.Nit)
+            </div>
+            <div class="col-md-3">
+                @Html.DisplayFor(model => model.Nit, new { style="width:275px", placeholder="Ingrese NIT"})
+                <span style="font-size:x-small">@Html.ValidationMessageFor(model => model.Nit)</span>
+            </div>
+            
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.Usuario)
+            </div>
+            <div class="col-md-3">
+                @Html.DisplayFor(model => model.Usuario, new { style="width:235px", placeholder="Ingrese usuario"})
+                <span style="font-size:x-small">@Html.ValidationMessageFor(model => model.Usuario)</span>
+            </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Nit)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Nit)
-    </div>
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.Accionista)
+            </div>
+            <div class="col-md-3">
+                @Html.CheckBoxFor(model => model.Accionista, new { disabled=true})
+                <span>@Html.ValidationMessageFor(model => model.Accionista)</span>    
+            </div>
+        </div>
+        <br />
+        <div class="row">            
+            <div class="col-md-1">
+               @Html.LabelFor(model=>model.EspecialidadID)
+            </div>
+            <div class="col-md-3"> 
+               @Html.DropDownList("EspecialidadID", null, new { disabled=true})              
+            </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Observaciones)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Observaciones)
-    </div>
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.Observaciones)
+            </div>            
+            <div class="col-md-7">
+                @Html.TextAreaFor(model => model.Observaciones, new { placeholder="Ingrese observaciones", disabled=true})
+                @Html.ValidationMessageFor(model => model.Observaciones)
+            </div>
+        </div>          
+    </div>           
+}
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Usuario)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Usuario)
-    </div>
+<div>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.DoctorID }, new { @class="btn btn-info active"}) 
+    @Html.ActionLink("Cancelar", "Index", null, new { @class="btn btn-danger"})
+</div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Accionista)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Accionista)
-    </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.EspecialidadID)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.EspecialidadID)
-    </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.DoctorID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
