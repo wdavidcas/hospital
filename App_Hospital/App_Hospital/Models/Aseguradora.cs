@@ -8,14 +8,14 @@ namespace App_Hospital.Models
 {
     public class Aseguradora
     {
-        public int ID { get; set; }
+        public int AseguradoraID { get; set; }
 
-        [StringLength(50)]
-        
+        [StringLength(50)]        
         [Display(Name="Aseguradora")]
-        [Required(ErrorMessage="Ingrese nombre.")]
-        
+        [Required(ErrorMessage="Ingrese nombre.")]        
         public string Nombre { get; set; }
+
+
         [Display(Name="Habilitado")]
         public bool Habilitado { get; set; }
     }

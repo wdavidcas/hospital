@@ -310,7 +310,9 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -359,11 +361,6 @@
     <Content Include="Views\Alimento\Create.cshtml" />
     <Content Include="Views\Alimento\Edit.cshtml" />
     <Content Include="Views\Alimento\Delete.cshtml" />
-    <Content Include="Views\Aseguradora\Index.cshtml" />
-    <Content Include="Views\Aseguradora\Details.cshtml" />
-    <Content Include="Views\Aseguradora\Create.cshtml" />
-    <Content Include="Views\Aseguradora\Edit.cshtml" />
-    <Content Include="Views\Aseguradora\Delete.cshtml" />
     <Content Include="Views\Categoria\Index.cshtml" />
     <Content Include="Views\Categoria\Details.cshtml" />
     <Content Include="Views\Categoria\Create.cshtml" />
@@ -379,6 +376,7 @@
     <Content Include="Views\Doctor\Create.cshtml" />
     <Content Include="Views\Doctor\Edit.cshtml" />
     <Content Include="Views\Doctor\Delete.cshtml" />
+    <Content Include="Views\Aseguradora\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
